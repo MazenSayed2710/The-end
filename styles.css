@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  font-synthesis: none;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  width: min(100%, 650px);
+  padding: clamp(28px, 6vw, 60px) clamp(18px, 5vw, 40px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: #777;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+h1 {
+  color: #29243a;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #686477;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  margin-bottom: 28px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  color: #514b65;
+  background: #f0eef6;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 650;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  background: #e5e0f3;
+}
+
+.nav-link.active {
+  color: #fff;
+  background: #667eea;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.unit {
+  min-width: 0;
+  padding: 24px 10px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 9px 24px rgba(102, 126, 234, 0.25);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.unit:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 13px 28px rgba(102, 126, 234, 0.35);
+}
+
+.number {
+  display: block;
+  margin-bottom: 8px;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.label {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.65rem, 2vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.target-date {
+  padding-top: 22px;
+  border-top: 1px solid #e9e6ef;
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.target-date strong {
+  color: #4a4558;
+}
+
+.footnote {
+  margin-top: 12px;
+  color: #9691a1;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.finished {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.finished .number {
+  font-size: 1.6rem;
+  animation: pulse 1s infinite;
+}
+
+.ramadan-page {
+  background: radial-gradient(circle at top, #5a438c 0%, #34215f 48%, #21163d 100%);
+}
+
+.ramadan-page .nav-link.active {
+  background: #8a68c5;
+}
+
+.ramadan-page .unit {
+  background: linear-gradient(135deg, #8060b8 0%, #49306f 100%);
+  box-shadow: 0 9px 24px rgba(73, 48, 111, 0.25);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .container {
+    border-radius: 18px;
+  }
+
+  .navigation {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .nav-link {
+    flex: 1 1 130px;
+    padding-inline: 12px;
+    font-size: 0.88rem;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .unit {
+    padding: 20px 8px;
+  }
+
+  .label {
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
