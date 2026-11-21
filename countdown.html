@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Military Service Countdown</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 60px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 90%;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .unit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 15px;
+        padding: 30px 25px;
+        min-width: 120px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .unit:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+      }
+
+      .number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .target-date {
+        color: #999;
+        font-size: 0.9rem;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #eee;
+      }
+
+      .finished {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .finished .number {
+        font-size: 1.5rem;
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 40px 20px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .countdown {
+          gap: 10px;
+        }
+
+        .unit {
+          padding: 20px 15px;
+          min-width: 80px;
+        }
+
+        .number {
+          font-size: 1.8rem;
+        }
+
+        .label {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎖️ Military Service</h1>
+      <p class="subtitle">Countdown to Freedom</p>
+
+      <div class="countdown">
+        <div class="unit">
+          <div class="number" id="days">0</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="unit">
+          <div class="number" id="hours">0</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="unit">
+          <div class="number" id="minutes">0</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="unit">
+          <div class="number" id="seconds">0</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+
+      <div class="target-date">
+        <strong>Service End Date:</strong> April 1, 2027
+      </div>
+    </div>
+
+    <script>
+      function updateCountdown() {
+        // Target date: April 1, 2026 at 00:00:00
+        const targetDate = new Date("2027-04-01T00:00:00").getTime();
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+          document.querySelector(".countdown").innerHTML =
+            '<div class="unit finished"><div class="number">🎉</div><div class="label">Service Complete!</div></div>';
+          return;
+        }
+
+        // Calculate time units
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        // Update display
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = String(hours).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("minutes").textContent = String(
+          minutes,
+        ).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(
+          seconds,
+        ).padStart(2, "0");
+      }
+
+      // Initial call
+      updateCountdown();
+
+      // Update every second
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
